@@ -1,0 +1,197 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>JW.ABM | 墨金 - 出国、贸易、电商、网站建设专家</title>
+    <meta name="description" content="墨金 JW.ABM 专注于出国咨询、跨境贸易、电商运营及高端网站建设。不讲故事，只解决实际问题。提供真实海外生活观察与专业服务支持。">
+    <meta name="keywords" content="出国, 贸易, 电商, 网站建设, 网页设计, 墨金, JW.ABM, 跨境贸易, 网站开发">
+    
+    <meta property="og:image" content="cover.jpg">
+    <meta itemprop="image" content="cover.jpg">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: #000; font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; color: #d4af37; overflow-x: hidden; }
+
+        /* 1. 音乐控制 - 极细线圈设计 */
+        .music-control {
+            position: fixed; top: 25px; left: 25px; z-index: 1000;
+            width: 40px; height: 40px; 
+            border: 0.5px solid rgba(212,175,55,0.3); /* 极细线 */
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            cursor: pointer; background: rgba(0,0,0,0.2); backdrop-filter: blur(8px);
+            transition: all 0.5s ease;
+        }
+        .music-icon { 
+            font-size: 14px; color: #d4af37; font-weight: 100;
+            opacity: 0.8;
+        }
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .rotating { animation: rotate 4s linear infinite; }
+
+        /* 2. 右上角导航 */
+        .floating-nav {
+            position: fixed; top: 30px; right: 25px; z-index: 1000;
+            display: flex; flex-direction: column; gap: 25px; text-align: right;
+        }
+        .nav-link { text-decoration: none !important; transition: all 0.3s ease; }
+        .main-text { font-size: 14px; color: #ffffff; letter-spacing: 4px; font-weight: 400; display: block; }
+        .sub-text { font-size: 9px; color: rgba(255,255,255,0.3); letter-spacing: 1px; text-transform: uppercase; margin-top: 4px; display: block; }
+
+        /* 3. 封面页面 */
+        .cover-section {
+            width: 100%; height: 100vh; position: relative;
+            background: url('cover.jpg') center center no-repeat;
+            background-size: cover;
+            display: flex; justify-content: center; align-items: flex-end;
+        }
+        .scroll-down {
+            margin-bottom: 40px; font-size: 20px; color: rgba(212,175,55,0.5);
+            animation: bounce 2.5s infinite; font-weight: 100;
+        }
+        @keyframes bounce { 
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); opacity: 0.3; }
+            40% { transform: translateY(-8px); opacity: 0.8; }
+        }
+
+        /* 4. 图片展示 */
+        .gallery { width: 100%; background: #000; }
+        .gallery img { width: 100%; display: block; }
+
+        /* 5. 黑屏过度区域 - 墨金色电影感文字 */
+        .transition-section {
+            padding: 150px 20px; text-align: center; background: #000;
+            display: flex; flex-direction: column; justify-content: center; min-height: 60vh;
+        }
+        .transition-section p {
+            color: rgba(255,255,255,0.6); font-size: 16px;
+            line-height: 2.5; letter-spacing: 4px; font-weight: 300;
+        }
+        
+        /* 墨金色特效 */
+        .gold-ink {
+            margin-top: 25px;
+            font-size: 20px !important;
+            font-weight: 500 !important;
+            letter-spacing: 6px !important;
+            background: linear-gradient(135deg, #d4af37 0%, #fcf6ba 45%, #d4af37 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0px 2px 10px rgba(212, 175, 55, 0.2);
+            filter: drop-shadow(0 0 1px rgba(212,175,55,0.3));
+        }
+
+        /* 6. 底部固定背景区 */
+        .fixed-bg-section {
+            position: relative; width: 100%; height: 100vh;
+            background: url('img5.jpg') center center no-repeat fixed;
+            background-size: cover;
+            display: flex; flex-direction: column; justify-content: flex-end; align-items: center;
+        }
+        .fixed-bg-section::after {
+            content: ""; position: absolute; bottom: 0; width: 100%; height: 85%;
+            background: linear-gradient(to top, #000 45%, transparent 100%); z-index: 1;
+        }
+
+        .footer-overlay { position: relative; z-index: 10; padding-bottom: 50px; text-align: center; width: 100%; }
+        .contact-links { margin-bottom: 35px; display: flex; justify-content: center; flex-wrap: wrap; gap: 25px; }
+        .contact-links a { 
+            color: #fff; text-decoration: none; font-size: 14px; border-bottom: 0.5px solid rgba(212,175,55,0.2);
+            padding-bottom: 5px; display: flex; align-items: center; gap: 8px; transition: all 0.3s;
+            letter-spacing: 1px;
+        }
+        .contact-links a i { color: #d4af37; font-size: 12px; }
+        
+        .qr-group { display: flex; justify-content: center; gap: 35px; margin-bottom: 25px; }
+        .qr-item img { width: 115px; height: 115px; border: 0.5px solid rgba(212,175,55,0.3); border-radius: 2px; background: #fff; padding: 4px; }
+        .qr-item span { display: block; margin-top: 12px; font-size: 12px; color: rgba(255,255,255,0.5); letter-spacing: 2px; }
+        
+        .copyright { color: #333; font-size: 9px; margin-top: 40px; letter-spacing: 3px; font-weight: 300; }
+
+        @media (max-width: 480px) {
+            .qr-item img { width: 105px; height: 105px; }
+            .floating-nav { top: 25px; right: 20px; }
+            .gold-ink { font-size: 18px !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="music-btn" class="music-control">
+        <audio id="bg-audio" src="bgm.mp3" loop preload="auto"></audio>
+        <span class="music-icon"><i class="fa-solid fa-compact-disc"></i></span>
+    </div>
+
+    <nav class="floating-nav">
+        <a href="https://jwabmbou.studio.site" target="_blank" class="nav-link">
+            <span class="main-text">日本語</span>
+            <span class="sub-text">Language Service</span>
+        </a>
+        <a href="https://jwabmsho.studio.site" target="_blank" class="nav-link">
+            <span class="main-text">公司</span>
+            <span class="sub-text">Corporate Entity</span>
+        </a>
+    </nav>
+
+    <div class="cover-section">
+        <div class="scroll-down">
+            <i class="fa-solid fa-angle-light-down"></i>
+        </div>
+    </div>
+
+    <div class="gallery">
+        <img src="img1.jpg" alt="出国咨询">
+        <img src="img2.jpg" alt="跨境贸易">
+        <img src="img3.jpg" alt="电商运营">
+        <img src="img4.jpg" alt="网站网页建设">
+    </div>
+
+    <div class="transition-section">
+        <p>有想法，但没方向？</p>
+        <p>很多时候，选择比努力更需要逻辑</p>
+        <p class="gold-ink">可以先找我聊清楚</p>
+    </div>
+
+    <div class="fixed-bg-section">
+        <div class="footer-overlay">
+            <div class="contact-links">
+                <a href="tel:08093084568"><i class="fa-solid fa-phone"></i> 电话联络</a>
+                <a href="https://line.me/ti/p/szmkPgsXTu/"><i class="fa-brands fa-line"></i> LINE 咨询</a>
+                <a href="mailto:jw.abm777@gmail.com"><i class="fa-solid fa-envelope"></i> Email</a>
+            </div>
+
+            <div class="qr-group">
+                <div class="qr-item">
+                    <img src="qr-wechat.png" alt="微信联系">
+                    <span>微信联系</span>
+                </div>
+                <div class="qr-item">
+                    <img src="qr-line.png" alt="LINE 账号">
+                    <span>LINE 账号</span>
+                </div>
+            </div>
+            <p class="copyright">不讲故事 · 只解决实际问题</p>
+        </div>
+    </div>
+
+    <script>
+        const btn = document.getElementById('music-btn');
+        const audio = document.getElementById('bg-audio');
+        const icon = document.querySelector('.music-icon');
+        let isPlaying = false;
+
+        btn.onclick = function() {
+            if (!isPlaying) {
+                audio.play();
+                icon.classList.add('rotating');
+            } else {
+                audio.pause();
+                icon.classList.remove('rotating');
+            }
+            isPlaying = !isPlaying;
+        };
+    </script>
+</body>
+</html>
