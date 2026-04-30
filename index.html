@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    
     <title>JW.ABM | 墨金 - 出国、贸易、电商、网站建设专家</title>
     <meta name="description" content="墨金 JW.ABM 专注于出国咨询、跨境贸易、电商运营及网站建设。不讲故事，只解决实际问题。">
     <meta name="keywords" content="出国, 贸易, 电商, 网站建设, 网页设计, 墨金, JW.ABM">
@@ -11,49 +10,76 @@
     <meta property="og:image" content="cover.jpg">
     <meta property="og:title" content="JW.ABM | 墨金">
     <meta property="og:description" content="不讲故事，只解决实际问题。">
-    <meta itemprop="image" content="cover.jpg"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <meta itemprop="image" content="cover.jpg">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background-color: #000; font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; color: #d4af37; overflow-x: hidden; }
+        
+        /* 基础颜色统一定义为墨金色 */
+        :root {
+            --ink-gold: linear-gradient(135deg, #d4af37 0%, #fcf6ba 45%, #d4af37 100%);
+            --static-gold: #d4af37;
+        }
 
-        /* 音乐控制 - 极细线圈 */
+        body { 
+            background-color: #000; 
+            font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; 
+            color: var(--static-gold); /* 全局文字改为墨金色 */
+            overflow-x: hidden; 
+        }
+
+        /* 1. 音乐控制 - 背景完全透明 + 极细线圈 */
         .music-control {
             position: fixed; top: 25px; left: 25px; z-index: 1000;
-            width: 40px; height: 40px; border: 0.5px solid rgba(212,175,55,0.3);
+            width: 40px; height: 40px; 
+            border: 0.5px solid rgba(212,175,55,0.4); 
             border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            cursor: pointer; background: rgba(0,0,0,0.2); backdrop-filter: blur(8px);
+            cursor: pointer; 
+            background: transparent; /* 背景完全透明 */
+            transition: all 0.5s ease;
         }
-        .music-icon { font-size: 14px; color: #d4af37; }
+        .music-icon { font-size: 14px; color: var(--static-gold); }
         @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
         .rotating { animation: rotate 4s linear infinite; }
 
-        /* 右上角导航 */
+        /* 2. 右上角导航 - 文字改为金色 */
         .floating-nav {
             position: fixed; top: 30px; right: 25px; z-index: 1000;
             display: flex; flex-direction: column; gap: 25px; text-align: right;
         }
         .nav-link { text-decoration: none !important; transition: all 0.3s ease; }
-        .main-text { font-size: 14px; color: #ffffff; letter-spacing: 4px; display: block; }
-        .sub-text { font-size: 9px; color: rgba(255,255,255,0.3); letter-spacing: 1px; text-transform: uppercase; margin-top: 4px; display: block; }
+        .main-text { font-size: 14px; color: var(--static-gold); letter-spacing: 4px; display: block; }
+        .sub-text { font-size: 9px; color: rgba(212,175,55,0.5); letter-spacing: 1px; text-transform: uppercase; margin-top: 4px; display: block; }
 
-        /* 网页内容区 - 排除 cover.jpg */
+        /* 3. 图片展示区 */
         .gallery { width: 100%; background: #000; }
         .gallery img { width: 100%; display: block; }
 
-        /* 墨金色电影感文字 */
+        /* 4. 黑屏过度区域 - 墨金色电影感文字 */
         .transition-section {
             padding: 150px 20px; text-align: center; background: #000;
             display: flex; flex-direction: column; justify-content: center; min-height: 60vh;
         }
-        .transition-section p { color: rgba(255,255,255,0.6); font-size: 16px; line-height: 2.5; letter-spacing: 4px; }
+        .transition-section p { 
+            color: var(--static-gold); /* 普通段落也改为金色 */
+            font-size: 16px; line-height: 2.5; letter-spacing: 4px; 
+            opacity: 0.8;
+        }
+        
+        /* 核心醒目墨金色特效 */
         .gold-ink {
-            margin-top: 25px; font-size: 20px; font-weight: 500; letter-spacing: 6px;
-            background: linear-gradient(135deg, #d4af37 0%, #fcf6ba 45%, #d4af37 100%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            text-shadow: 0px 2px 10px rgba(212, 175, 55, 0.2);
+            margin-top: 25px; 
+            font-size: 20px; 
+            font-weight: 500; 
+            letter-spacing: 6px;
+            background: var(--ink-gold);
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0px 2px 10px rgba(212, 175, 55, 0.3);
         }
 
-        /* 底部布局 */
+        /* 5. 底部布局 */
         .fixed-bg-section {
             position: relative; width: 100%; height: 100vh;
             background: url('img5.jpg') center center no-repeat fixed; background-size: cover;
@@ -67,13 +93,16 @@
         .footer-overlay { position: relative; z-index: 10; padding-bottom: 50px; text-align: center; width: 100%; }
         .contact-links { margin-bottom: 35px; display: flex; justify-content: center; flex-wrap: wrap; gap: 25px; }
         .contact-links a { 
-            color: #fff; text-decoration: none; font-size: 14px; border-bottom: 0.5px solid rgba(212,175,55,0.2);
+            color: var(--static-gold); 
+            text-decoration: none; font-size: 14px; border-bottom: 0.5px solid rgba(212,175,55,0.4);
             padding-bottom: 5px; display: flex; align-items: center; gap: 8px; transition: all 0.3s;
         }
+        
         .qr-group { display: flex; justify-content: center; gap: 35px; margin-bottom: 25px; }
-        .qr-item img { width: 110px; height: 110px; border: 0.5px solid rgba(212,175,55,0.3); border-radius: 2px; background: #fff; padding: 4px; }
-        .qr-item span { display: block; margin-top: 12px; font-size: 12px; color: rgba(255,255,255,0.5); letter-spacing: 2px; }
-        .copyright { color: #333; font-size: 9px; margin-top: 40px; letter-spacing: 3px; }
+        .qr-item img { width: 110px; height: 110px; border: 0.5px solid rgba(212,175,55,0.4); border-radius: 2px; background: #fff; padding: 4px; }
+        .qr-item span { display: block; margin-top: 12px; font-size: 12px; color: var(--static-gold); letter-spacing: 2px; opacity: 0.8; }
+        
+        .copyright { color: rgba(212,175,55,0.4); font-size: 9px; margin-top: 40px; letter-spacing: 3px; }
 
         @media (max-width: 480px) {
             .qr-item img { width: 105px; height: 105px; }
